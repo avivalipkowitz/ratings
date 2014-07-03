@@ -1,5 +1,6 @@
 <html>
+<h2>This is a list of users. (There are a lot.)</h2>
 {% for user in user_list %}
-<h2>User {{ user.id }}, age {{ user.age }} has {{ user.ratings|length}} ratings</h2>
+<h2>User <a href="/user_page" >{{ user.id }}</a>, age {{ user.age }} has {{ user.ratings|length}} ratings</h2>
 {% endfor %}
 </html>

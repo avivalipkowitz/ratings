@@ -32,8 +32,6 @@ class Movie(Base):
     release_date = Column(DateTime, nullable = True)
     imdb_url = Column(String(64), nullable = True)
 
-
-
 class Data(Base):
     __tablename__ = "data"
 
