@@ -40,8 +40,8 @@ class Data(Base):
     movie_id = Column(Integer, ForeignKey('movies.id'), nullable = False)
     rating = Column(Integer, nullable = False)
 
-    user = relationship("User", backref=backref("ratings", order_by=id))
-    movie = relationship("Movie", backref=backref("movies", order_by=id))
+    user = relationship("User", backref=backref("data", order_by=id))
+    movie = relationship("Movie", backref=backref("data", order_by=id))
 
 
 

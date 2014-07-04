@@ -7,9 +7,22 @@ app.secret_key = '\xf5!\x07!qj\xa4\x08\xc6\xf8\n\x8a\x95m\xe2\x04g\xbb\x98|U\xa2
 
 @app.route("/")
 def index():
-    user_list = model.session.query(model.User).limit(5).all()
+    return render_template("index.html")
+
+@app.route('/userlist')
+def show_all_user_list():
+    user_list = model.session.query(model.User).all()
     # user_page = 
     return render_template("user_list.html", user_list=user_list)
+
+@app.route('/userpage/<int:id>')
+def show_single_user(id):
+    m = model.session.query(model.Data).filter_by(user_id = id).all()
+    movie_list = []
+    for rating in m:
+        movie_list.append(rating.movie.title)
+
+    return render_template("user_page.html", movie_list=movie_list, user_id = id)
 
 @app.route("/login", methods=['GET'])
 def show_login():
@@ -50,9 +63,7 @@ def process_signup():
 
     return redirect('/login')
 
-@app.route('/user_page')
-def user_page():
-    return render_template('userpage.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
